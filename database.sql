@@ -116,6 +116,7 @@ BEGIN;
 COPY app_flights (
     flight_code,
     scheduled_departure,
+    scheduled_arrival,
     departure_airport_id,
     arrival_airport_id,
     flight_status,

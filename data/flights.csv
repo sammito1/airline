@@ -1,4 +1,4 @@
-flight_code,scheduled_departure,departure_airport_id,arrival_airport_id,flight_status,aircraft_code,actual_departure,actual_arrival
+flight_code,scheduled_departure,scheduled_arrival,departure_airport_id,arrival_airport_id,flight_status,aircraft_code,actual_departure,actual_arrival
 PG0134,2017-09-10 06:50:00+00,2017-09-10 11:55:00+00,DME,BTK,Scheduled,319,,
 PG0052,2017-08-25 11:50:00+00,2017-08-25 14:35:00+00,VKO,HMA,Scheduled,CR2,,
 PG0561,2017-09-05 09:30:00+00,2017-09-05 11:15:00+00,VKO,AER,Scheduled,763,,
