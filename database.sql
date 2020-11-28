@@ -124,7 +124,8 @@ COPY app_flights (
     actual_departure,
     actual_arrival
 )
-FROM './data/flights.csv'
+/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
+FROM '/mnt/d/airline/data/flights.csv'
 DELIMITER ','
 CSV HEADER;
 COMMIT;
