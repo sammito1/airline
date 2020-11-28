@@ -1,105 +1,105 @@
-airport_code                                ,airport_name        ,city 
-YKS,Yakutsk Airport                         ,Yakutsk             ,Asia/Yakutsk
-MJZ,Mirny Airport                           ,Mirnyj              ,Asia/Yakutsk
-KHV,Khabarovsk-Novy Airport                 ,Khabarovsk          ,Asia/Vladivostok
-PKC,Yelizovo Airport                        ,Petropavlovsk       ,Asia/Kamchatka
-UUS,Yuzhno-Sakhalinsk Airport               ,Yuzhno-Sakhalinsk   ,Asia/Sakhalin
-VVO,Vladivostok International Airport       ,Vladivostok         ,Asia/Vladivostok
-LED,Pulkovo Airport                         ,St. Petersburg      ,Europe/Moscow
-KGD,Khrabrovo Airport                       ,Kaliningrad         ,Europe/Kaliningrad
-KEJ,Kemerovo Airport                        ,Kemorovo            ,Asia/Novokuznetsk
-CEK,Chelyabinsk Balandino Airport           ,Chelyabinsk         ,Asia/Yekaterinburg
-MQF,Magnitogorsk International Airport      ,Magnetiogorsk       ,Asia/Yekaterinburg
-PEE,Bolshoye Savino Airport                 ,Perm                ,Asia/Yekaterinburg
-SGC,Surgut Airport                          ,Surgut              ,Asia/Yekaterinburg
-BZK,Bryansk Airport                         ,Bryansk             ,Europe/Moscow
-MRV,Mineralnyye Vody Airport                ,Mineralnye Vody     ,Europe/Moscow
-STW,Stavropol Shpakovskoye Airport          ,Stavropol           ,Europe/Moscow
-ASF,Astrakhan Airport                       ,Astrakhan           ,Europe/Samara
-NJC,Nizhnevartovsk Airport                  ,Nizhnevartovsk      ,Asia/Yekaterinburg
-SVX,Koltsovo Airport                        ,Yekaterinburg       ,Asia/Yekaterinburg
-SVO,Sheremetyevo International Airport      ,Moscow              ,Europe/Moscow
-VOZ,Voronezh International Airport          ,Voronezh            ,Europe/Moscow
-VKO,Vnukovo International Airport           ,Moscow              ,Europe/Moscow
-SCW,Syktyvkar Airport                       ,Syktyvkar           ,Europe/Moscow
-KUF,Kurumoch International Airport          ,Samara              ,Europe/Samara
-DME,Domodedovo International Airport        ,Moscow              ,Europe/Moscow
-TJM,Roshchino International Airport         ,Tyumen              ,Asia/Yekaterinburg
-GOJ,Nizhny Novgorod Strigino International  ,Nizhniy Novgorod    ,Europe/Moscow
-TOF,Bogashevo Airport                       ,Tomsk               ,Asia/Krasnoyarsk
-UIK,Ust-Ilimsk Airport                      ,Ust Ilimsk          ,Asia/Irkutsk
-NSK,Norilsk-Alykel Airport                  ,Norilsk             ,Asia/Krasnoyarsk
-ARH,Talagi Airport                          ,Arkhangelsk         ,Europe/Moscow
-RTW,Saratov Central Airport                 ,Saratov             ,Europe/Volgograd
-NUX,Novy Urengoy Airport                    ,Novy Urengoy        ,Asia/Yekaterinburg
-NOJ,Noyabrsk Airport                        ,Noyabrsk            ,Asia/Yekaterinburg
-UCT,Ukhta Airport                           ,Ukhta               ,Europe/Moscow
-USK,Usinsk Airport                          ,Usinsk              ,Europe/Moscow
-NNM,Naryan Mar Airport                      ,Naryan-Mar          ,Europe/Moscow
-PKV,Pskov Airport                           ,Pskov               ,Europe/Moscow
-KGP,Kogalym International Airport           ,Kogalym             ,Asia/Yekaterinburg
-KJA,Yemelyanovo Airport                     ,Krasnoyarsk         ,Asia/Krasnoyarsk
-URJ,Uray Airport                            ,Uraj                ,Asia/Yekaterinburg
-IWA,Ivanovo South Airport                   ,Ivanovo             ,Europe/Moscow
-PYJ,Polyarny Airport                        ,Yakutia             ,Asia/Yakutsk
-KXK,Komsomolsk-on-Amur Airport              ,Komsomolsk-on-Amur  ,Asia/Vladivostok
-DYR,Ugolny Airport                          ,Anadyr              ,Asia/Anadyr
-PES,Petrozavodsk Airport                    ,Petrozavodsk        ,Europe/Moscow
-KYZ,Kyzyl Airport                           ,Kyzyl               ,Asia/Krasnoyarsk
-NOZ,Spichenkovo Airport                     ,Novokuznetsk        ,Asia/Novokuznetsk
-GRV,Khankala Air Base                       ,Grozny              ,Europe/Moscow
-NAL,Nalchik Airport                         ,Nalchik             ,Europe/Moscow
-OGZ,Beslan Airport                          ,Beslan              ,Europe/Moscow
-ESL,Elista Airport                          ,Elista              ,Europe/Moscow
-SLY,Salekhard Airport                       ,Salekhard           ,Asia/Yekaterinburg
-HMA,Khanty Mansiysk Airport                 ,Khanty-Mansiysk     ,Asia/Yekaterinburg
-NYA,Nyagan Airport                          ,Nyagan              ,Asia/Yekaterinburg
-OVS,Sovetskiy Airport                       ,Sovetskiy           ,Asia/Yekaterinburg
-IJK,Izhevsk Airport                         ,Izhevsk             ,Europe/Samara
-KVX,Pobedilovo Airport                      ,Kirov               ,Europe/Moscow
-NYM,Nadym Airport                           ,Nadym               ,Asia/Yekaterinburg
-NFG,Nefteyugansk Airport                    ,Nefteyugansk        ,Asia/Yekaterinburg
-KRO,Kurgan Airport                          ,Kurgan              ,Asia/Yekaterinburg
-EGO,Belgorod International Airport          ,Belgorod            ,Europe/Moscow
-URS,Kursk East Airport                      ,Kursk               ,Europe/Moscow
-LPK,Lipetsk Airport                         ,Lipetsk             ,Europe/Moscow
-VKT,Vorkuta Airport                         ,Vorkuta             ,Europe/Moscow
-UUA,Bugulma Airport                         ,Bugulma             ,Europe/Moscow
-JOK,Yoshkar-Ola Airport                     ,Yoshkar-Ola         ,Europe/Moscow
-CSY,Cheboksary Airport                      ,Cheboksary          ,Europe/Moscow
-ULY,Ulyanovsk East Airport                  ,Ulyanovsk           ,Europe/Samara
-OSW,Orsk Airport                            ,Orsk                ,Asia/Yekaterinburg
-PEZ,Penza Airport                           ,Penza               ,Europe/Moscow
-SKX,Saransk Airport                         ,Saransk             ,Europe/Moscow
-TBW,Donskoye Airport                        ,Tambow              ,Europe/Moscow
-UKX,Ust-Kut Airport                         ,Ust-Kut             ,Asia/Irkutsk
-GDZ,Gelendzhik Airport                      ,Gelendzhik          ,Europe/Moscow
-IAR,Tunoshna Airport                        ,Yaroslavl           ,Europe/Moscow
-NBC,Begishevo Airport                       ,Nizhnekamsk         ,Europe/Moscow
-ULV,Ulyanovsk Baratayevka Airport           ,Ulyanovsk           ,Europe/Samara
-SWT,Strezhevoy Airport                      ,Strezhevoy          ,Asia/Krasnoyarsk
-EYK,Beloyarskiy Airport                     ,Beloyarsky          ,Asia/Yekaterinburg
-KLF,Grabtsevo Airport                       ,Kaluga              ,Europe/Moscow
-RGK,Gorno-Altaysk Airport                   ,Gorno-Altaysk       ,Asia/Krasnoyarsk
-KRR,Krasnodar Pashkovsky International Airp ,Krasnodar           ,Europe/Moscow
-MCX,Uytash Airport                          ,Makhachkala         ,Europe/Moscow
-KZN,Kazan International Airport             ,Kazan               ,Europe/Moscow
-REN,Orenburg Central Airport                ,Orenburg            ,Asia/Yekaterinburg
-UFA,Ufa International Airport               ,Ufa                 ,Asia/Yekaterinburg
-OVB,Tolmachevo Airport                      ,Novosibirsk         ,Asia/Novosibirsk
-CEE,Cherepovets Airport                     ,Cherepovets         ,Europe/Moscow
-OMS,Omsk Central Airport                    ,Omsk                ,Asia/Omsk
-ROV,Rostov-on-Don Airport                   ,Rostov              ,Europe/Moscow
-AER,Sochi International Airport             ,Sochi               ,Europe/Moscow
-VOG,Volgograd International Airport         ,Volgograd           ,Europe/Volgograd
-BQS,Ignatyevo Airport                       ,Blagoveschensk      ,Asia/Yakutsk
-GDX,Sokol Airport                           ,Magadan             ,Asia/Magadan
-HTA,Chita-Kadala Airport                    ,Chita               ,Asia/Chita
-BTK,Bratsk Airport                          ,Bratsk              ,Asia/Irkutsk
-IKT,Irkutsk Airport                         ,Irkutsk             ,Asia/Irkutsk
-UUD,Ulan-Ude Airport (Mukhino)              ,Ulan-ude            ,Asia/Irkutsk
-MMK,Murmansk Airport                        ,Murmansk            ,Europe/Moscow
-ABA,Abakan Airport                          ,Abakan              ,Asia/Krasnoyarsk
-BAX,Barnaul Airport                         ,Barnaul             ,Asia/Krasnoyarsk
-AAQ,Anapa Vityazevo Airport                 ,Anapa               ,Europe/Moscow
-CNN,Chulman Airport                         ,Neryungri           ,Asia/Yakutsk
+airport_code,airport_name, city      
+YKS,Yakutsk Airport                         ,Yakutsk            
+MJZ,Mirny Airport                           ,Mirnyj             
+KHV,Khabarovsk-Novy Airport                 ,Khabarovsk 
+PKC,Yelizovo Airport                        ,Petropavlovsk 
+UUS,Yuzhno-Sakhalinsk Airport               ,Yuzhno-Sakhalinsk   
+VVO,Vladivostok International Airport       ,Vladivostok         
+LED,Pulkovo Airport                         ,St. Petersburg      
+KGD,Khrabrovo Airport                       ,Kaliningrad         
+KEJ,Kemerovo Airport                        ,Kemorovo            
+CEK,Chelyabinsk Balandino Airport           ,Chelyabinsk         
+MQF,Magnitogorsk International Airport      ,Magnetiogorsk       
+PEE,Bolshoye Savino Airport                 ,Perm                
+SGC,Surgut Airport                          ,Surgut              
+BZK,Bryansk Airport                         ,Bryansk             
+MRV,Mineralnyye Vody Airport                ,Mineralnye Vody     
+STW,Stavropol Shpakovskoye Airport          ,Stavropol           
+ASF,Astrakhan Airport                       ,Astrakhan           
+NJC,Nizhnevartovsk Airport                  ,Nizhnevartovsk      
+SVX,Koltsovo Airport                        ,Yekaterinburg       
+SVO,Sheremetyevo International Airport      ,Moscow              
+VOZ,Voronezh International Airport          ,Voronezh            
+VKO,Vnukovo International Airport           ,Moscow              
+SCW,Syktyvkar Airport                       ,Syktyvkar           
+KUF,Kurumoch International Airport          ,Samara              
+DME,Domodedovo International Airport        ,Moscow              
+TJM,Roshchino International Airport         ,Tyumen              
+GOJ,Nizhny Novgorod Strigino International  ,Nizhniy Novgorod    
+TOF,Bogashevo Airport                       ,Tomsk              
+UIK,Ust-Ilimsk Airport                      ,Ust Ilimsk          
+NSK,Norilsk-Alykel Airport                  ,Norilsk            
+ARH,Talagi Airport                          ,Arkhangelsk         
+RTW,Saratov Central Airport                 ,Saratov            
+NUX,Novy Urengoy Airport                    ,Novy Urengoy       
+NOJ,Noyabrsk Airport                        ,Noyabrsk           
+UCT,Ukhta Airport                           ,Ukhta               
+USK,Usinsk Airport                          ,Usinsk              
+NNM,Naryan Mar Airport                      ,Naryan-Mar          
+PKV,Pskov Airport                           ,Pskov               
+KGP,Kogalym International Airport           ,Kogalym            
+KJA,Yemelyanovo Airport                     ,Krasnoyarsk        
+URJ,Uray Airport                            ,Uraj               
+IWA,Ivanovo South Airport                   ,Ivanovo             
+PYJ,Polyarny Airport                        ,Yakutia             
+KXK,Komsomolsk-on-Amur Airport              ,Komsomolsk-on-Amur  
+DYR,Ugolny Airport                          ,Anadyr              
+PES,Petrozavodsk Airport                    ,Petrozavodsk        
+KYZ,Kyzyl Airport                           ,Kyzyl              
+NOZ,Spichenkovo Airport                     ,Novokuznetsk        
+GRV,Khankala Air Base                       ,Grozny              
+NAL,Nalchik Airport                         ,Nalchik             
+OGZ,Beslan Airport                          ,Beslan              
+ESL,Elista Airport                          ,Elista              
+SLY,Salekhard Airport                       ,Salekhard           
+HMA,Khanty Mansiysk Airport                 ,Khanty-Mansiysk     
+NYA,Nyagan Airport                          ,Nyagan              
+OVS,Sovetskiy Airport                       ,Sovetskiy           
+IJK,Izhevsk Airport                         ,Izhevsk             
+KVX,Pobedilovo Airport                      ,Kirov               
+NYM,Nadym Airport                           ,Nadym               
+NFG,Nefteyugansk Airport                    ,Nefteyugansk        
+KRO,Kurgan Airport                          ,Kurgan              
+EGO,Belgorod International Airport          ,Belgorod            
+URS,Kursk East Airport                      ,Kursk               
+LPK,Lipetsk Airport                         ,Lipetsk             
+VKT,Vorkuta Airport                         ,Vorkuta             
+UUA,Bugulma Airport                         ,Bugulma             
+JOK,Yoshkar-Ola Airport                     ,Yoshkar-Ola         
+CSY,Cheboksary Airport                      ,Cheboksary          
+ULY,Ulyanovsk East Airport                  ,Ulyanovsk           
+OSW,Orsk Airport                            ,Orsk                
+PEZ,Penza Airport                           ,Penza               
+SKX,Saransk Airport                         ,Saransk             
+TBW,Donskoye Airport                        ,Tambow              
+UKX,Ust-Kut Airport                         ,Ust-Kut             
+GDZ,Gelendzhik Airport                      ,Gelendzhik          
+IAR,Tunoshna Airport                        ,Yaroslavl           
+NBC,Begishevo Airport                       ,Nizhnekamsk         
+ULV,Ulyanovsk Baratayevka Airport           ,Ulyanovsk           
+SWT,Strezhevoy Airport                      ,Strezhevoy          
+EYK,Beloyarskiy Airport                     ,Beloyarsky          
+KLF,Grabtsevo Airport                       ,Kaluga              
+RGK,Gorno-Altaysk Airport                   ,Gorno-Altaysk       
+KRR,Krasnodar Pashkovsky International Airp ,Krasnodar           
+MCX,Uytash Airport                          ,Makhachkala         
+KZN,Kazan International Airport             ,Kazan               
+REN,Orenburg Central Airport                ,Orenburg            
+UFA,Ufa International Airport               ,Ufa                 
+OVB,Tolmachevo Airport                      ,Novosibirsk         
+CEE,Cherepovets Airport                     ,Cherepovets         
+OMS,Omsk Central Airport                    ,Omsk                
+ROV,Rostov-on-Don Airport                   ,Rostov              
+AER,Sochi International Airport             ,Sochi               
+VOG,Volgograd International Airport         ,Volgograd           
+BQS,Ignatyevo Airport                       ,Blagoveschensk      
+GDX,Sokol Airport                           ,Magadan             
+HTA,Chita-Kadala Airport                    ,Chita               
+BTK,Bratsk Airport                          ,Bratsk              
+IKT,Irkutsk Airport                         ,Irkutsk             
+UUD,Ulan-Ude Airport (Mukhino)              ,Ulan-ude            
+MMK,Murmansk Airport                        ,Murmansk            
+ABA,Abakan Airport                          ,Abakan              
+BAX,Barnaul Airport                         ,Barnaul             
+AAQ,Anapa Vityazevo Airport                 ,Anapa               
+CNN,Chulman Airport                         ,Neryungri           
