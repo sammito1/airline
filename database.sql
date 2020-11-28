@@ -116,6 +116,9 @@ BEGIN;
 COPY app_airports (
     airport_code, airport_name, city
 )
+/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
+/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
+    to the aircraft.csv file **/
 FROM '/mnt/d/airline/data/airports.csv'
 DELIMITER ','
 CSV HEADER;
@@ -127,6 +130,9 @@ BEGIN;
 COPY app_aircraft (
     aircraft_code, model, range
 )
+/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
+/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
+    to the aircraft.csv file **/
 FROM '/mnt/d/airline/data/aircraft.csv'
 DELIMITER ','
 CSV HEADER;
@@ -147,6 +153,8 @@ COPY app_flights (
     actual_arrival
 )
 /** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
+/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
+    to the aircraft.csv file **/
 FROM '/mnt/d/airline/data/flights.csv'
 DELIMITER ','
 CSV HEADER;
