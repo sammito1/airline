@@ -1,9 +1,15 @@
-RUN THESE COMMANDS
+RUN THESE COMMANDS (these are temporary, I'll make easier guide soon)
 ------------------
 
 - Install Anaconda virtual environment -
 $ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 $ bash Miniconda3-latest-Linux-x86_64.sh
+
+After executing the previous command it will bring up a screen to accept the software license agreement.
+Next, press `ENTER`, then press `q`, then type "yes" when it asks if you accept the terms. Next,
+press `ENTER` to confirm the location of the installation. Lastly, type 'yes' when it asks if you
+would like to initialize by running conda init. Now, close and reopen your terminal to make sure that
+anaconda is running.
 
 - Install Flask within Anaconda environment -
 $ conda install -c anaconda flask
