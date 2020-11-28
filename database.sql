@@ -63,8 +63,8 @@ CREATE TABLE app_flights (
     arrival_gate varchar(3),
     movie boolean,
     meal boolean,
-    seats_remaining integer,
-    price numeric(10, 2),
+    seats_remaining integer DEFAULT 100,
+    price numeric(10, 2) DEFAULT 1000,
 
     CONSTRAINT fk_departure_airport_id
         FOREIGN KEY (departure_airport_id)
@@ -107,5 +107,12 @@ CREATE TABLE app_boarding_passes (
 
     PRIMARY KEY(ticket_id, flight_id)
 );
+
+COMMIT;
+
+/** Add data to tables **/
+BEGIN;
+
+
 
 COMMIT;
