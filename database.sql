@@ -113,6 +113,28 @@ COMMIT;
 /** Add data to tables **/
 BEGIN;
 
+COPY app_airports (
+    airport_code, airport_name, city
+)
+FROM '/mnt/d/airline/data/airports.csv'
+DELIMITER ','
+CSV HEADER;
+
+COMMIT;
+
+BEGIN;
+
+COPY app_aircraft (
+    aircraft_code, model, range
+)
+FROM '/mnt/d/airline/data/aircraft.csv'
+DELIMITER ','
+CSV HEADER;
+
+COMMIT;
+
+BEGIN;
+
 COPY app_flights (
     flight_code,
     scheduled_departure,
