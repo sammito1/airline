@@ -113,6 +113,17 @@ COMMIT;
 /** Add data to tables **/
 BEGIN;
 
-
-
+COPY app_flights (
+    flight_code,
+    scheduled_departure,
+    departure_airport_id,
+    arrival_airport_id,
+    flight_status,
+    aircraft_code,
+    actual_departure,
+    actual_arrival
+)
+FROM './data/flights.csv'
+DELIMITER ','
+CSV HEADER;
 COMMIT;
