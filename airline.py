@@ -5,3 +5,4 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """ Display available flights """ 
+    return "This is the homepage!"
