@@ -1,0 +1,12 @@
+RUN THESE COMMANDS
+------------------
+
+- Install Anaconda virtual environment -
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+$ bash Miniconda3-latest-Linux-x86_64.sh
+
+- Install Flask within Anaconda environment -
+$ conda install -c anaconda flask
+
+- Uninstall Anaconda virtual environment -
+$ rm -rf ~/miniconda3
