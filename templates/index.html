@@ -14,8 +14,23 @@
       <th scope="col">Scheduled Arrival</th>
       <th scope="col">Departure Airport</th>
       <th scope="col">Arrival Airport</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
     </tr>
   </thead>
+
+  {% for row in rows %}
+  <tr>
+    <td>{{ row.flight_code }}</td>
+    <td>{{ row.scheduled_departure }}</td>
+    <td>{{ row.scheduled_arrival }}</td>
+    <td>{{ row.departure_airport_id }}</td>
+    <td>{{ row.arrival_airport_id }}</td>
+    <td>{{ row.price }} </td>
+    <td> Select flight </td>
+  </tr>
+  {% endfor %}
+
 </table>
 
 {% endblock %}

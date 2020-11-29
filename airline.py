@@ -1,3 +1,4 @@
+from cs50 import SQL
 from flask import Flask, render_template
 app = Flask(__name__)
 
@@ -5,4 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     """ Display available flights """ 
-    return render_template('index.html')
+    db = SQL("postgres://postgres:postgres@localhost:5432/COSC3380") # local db
+    flights_query = db.execute("SELECT * FROM app_flights")
+    
+    # db = SQL("postgres://cosc0168:1934844MS@code.cs.uh.edu:5432/COSC3380") # remote db
+    return render_template('index.html', rows=flights_query)
