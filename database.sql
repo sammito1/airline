@@ -108,54 +108,25 @@ CREATE TABLE app_boarding_passes (
     PRIMARY KEY(ticket_id, flight_id)
 );
 
+CREATE TABLE app_users (
+    id SERIAL PRIMARY KEY,
+    username text UNIQUE,
+    hash text
+);
+
 COMMIT;
 
 /** Add data to tables **/
-BEGIN;
+/**
 
-COPY app_airports (
-    airport_code, airport_name, city
-)
-/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
-/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
-    to the aircraft.csv file **/
-FROM '/mnt/d/airline/data/airports.csv'
-DELIMITER ','
-CSV HEADER;
+MAKE SURE hw4 directory has a folder called `data` that contains `aircraft.csv`, `airports.csv`,
+and `flights.csv`.
 
-COMMIT;
 
-BEGIN;
+RUN THESE COMMANDS IN PSQL SHELL
 
-COPY app_aircraft (
-    aircraft_code, model, range
-)
-/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
-/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
-    to the aircraft.csv file **/
-FROM '/mnt/d/airline/data/aircraft.csv'
-DELIMITER ','
-CSV HEADER;
+\copy app_airports(airport_code, airport_name, city) FROM '~/hw4/data/airports.csv' DELIMITER ',' CSV HEADER
+\copy app_aircraft(aircraft_code, model, range) FROM '~/hw4/data/aircraft.csv' DELIMITER ',' CSV HEADER
+\copy app_flights(flight_code, scheduled_departure,scheduled_arrival,departure_airport_id, arrival_airport_id,flight_status,aircraft_code,actual_departure,actual_arrival) FROM '~/hw4/data/flights.csv' DELIMITER ',' CSV HEADER
 
-COMMIT;
-
-BEGIN;
-
-COPY app_flights (
-    flight_code,
-    scheduled_departure,
-    scheduled_arrival,
-    departure_airport_id,
-    arrival_airport_id,
-    flight_status,
-    aircraft_code,
-    actual_departure,
-    actual_arrival
-)
-/** NOTE: THIS IS AN ABSOLUTE PATH, WILL NOT WORK ON LINUX SERVER **/
-/** If you are using this code on your own local machine, include the ABSOLUTE PATH 
-    to the aircraft.csv file **/
-FROM '/mnt/d/airline/data/flights.csv'
-DELIMITER ','
-CSV HEADER;
-COMMIT;
+**/

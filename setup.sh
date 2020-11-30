@@ -5,4 +5,6 @@ echo 'export PATH=$HOME/miniconda3/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 conda install -c anaconda flask --yes
 conda install -c anaconda psycopg2 --yes
+conda install -c anaconda sqlparse
 pip3 install cs50
+pip3 install flask-session
