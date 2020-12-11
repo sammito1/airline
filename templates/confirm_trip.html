@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 
 {% block title %}
-  Checkout
+  Confirm Trip
 {% endblock %}
 
 {% block main %}
-
 
 <div class="container-lg bg-light rounded py-3">
   <h4> Selected trip: </h4>
@@ -32,24 +31,10 @@
     </tr>
     {% endfor %}
   </table>
-</div>
-
-<div class="container-lg my-3">
-  <form action="/" method="post">
-    <h4 class="mb-3">Who's traveling?</h4>
-    <div class="form-group col-auto">
-      <input type="text" class="form-control" placeholder="Name" required>
-    </div>
-    <div class="form-group col-auto">
-      <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-    </div>
-    <div class="form-group col-auto">
-      <input type="tel" class="form-control" placeholder="Phone" required>
-    </div>
-    <h4 class="mb-3">Seat Selection</h4>
-    <h4 class="mb-3">Bringing Bags?</h4>
-    <h4 class="mb-3">Payment</h4>
-    <button type="submit" class="btn btn-primary">Submit</button>
+  <form action="/checkout" method="get">
+    <input type="hidden" id="hidden-flight-id-string" name="flight-id-string" value="{{ flight_id_string }}">
+    <button type="submit" class="btn btn-primary" name="continue-checkout">Continue</button>
   </form>
 </div>
+
 {% endblock %}

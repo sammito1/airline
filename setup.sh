@@ -1,10 +1,5 @@
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh -b
-export PATH=$HOME/miniconda3/bin:$PATH
-echo 'export PATH=$HOME/miniconda3/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-conda install -c anaconda flask --yes
-conda install -c anaconda psycopg2 --yes
-conda install -c anaconda sqlparse
-pip3 install cs50
+pip3 install flask
 pip3 install flask-session
+pip3 install cs50
+pip3 install psycopg2
+pip3 install sqlparse
