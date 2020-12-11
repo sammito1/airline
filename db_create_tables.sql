@@ -7,8 +7,9 @@ DROP TABLE IF EXISTS app_tickets CASCADE;
 DROP TABLE IF EXISTS app_boarding_passes CASCADE;
 DROP TABLE IF EXISTS app_airports CASCADE;
 DROP TABLE IF EXISTS app_aircraft CASCADE;
-DROP TABLE IF EXISTS app_gates CASCADE;
 DROP TABLE IF EXISTS app_flights CASCADE;
+DROP TABLE IF EXISTS app_seats CASCADE;
+DROP TABLE IF EXISTS app_users CASCADE;
 
 /** Manually create tables **/
 CREATE TABLE app_bookings (
@@ -45,8 +46,11 @@ CREATE TABLE app_aircraft (
     range integer
 );
 
-CREATE TABLE app_gates (
-    gate_id varchar(3) PRIMARY KEY
+CREATE TABLE app_seats (
+    aircraft_code char(3),
+    seat_no varchar(3),
+    fare_conditions text,
+    PRIMARY KEY(aircraft_code, seat_no)
 );
 
 CREATE TABLE app_flights (
@@ -54,17 +58,20 @@ CREATE TABLE app_flights (
     flight_code char(6),
     scheduled_departure timestamptz,
     scheduled_arrival timestamptz,
-    actual_departure timestamptz,
-    actual_arrival timestamptz,
     departure_airport_id char(3),
     arrival_airport_id char(3),
     flight_status varchar(20),
     aircraft_code char(3),
     arrival_gate varchar(3),
-    movie boolean,
-    meal boolean,
-    seats_remaining integer DEFAULT 100,
+    movie boolean DEFAULT 'Yes',
+    meal boolean DEFAULT 'Yes',
+    /**
+    max_seats_econ integer,
+    max_seats_bus integer,
     price numeric(10, 2) DEFAULT 1000,
+    **/
+    price_econ numeric(10, 2) DEFAULT 350,
+    price_bus numeric(10, 2) DEFAULT 750,
 
     CONSTRAINT fk_departure_airport_id
         FOREIGN KEY (departure_airport_id)
@@ -79,19 +86,14 @@ CREATE TABLE app_flights (
     CONSTRAINT fk_aircraft_code
         FOREIGN KEY (aircraft_code)
             REFERENCES app_aircraft(aircraft_code)
-            ON DELETE SET NULL,
-
-    CONSTRAINT fk_arrival_gate
-        FOREIGN KEY (arrival_gate)
-            REFERENCES app_gates(gate_id)
-                ON DELETE SET NULL
+            ON DELETE SET NULL
 );
 
 CREATE TABLE app_boarding_passes (
     ticket_id integer,
     flight_id integer,
     boarding_num integer,
-    seat_num varchar(4),
+    seat_no varchar(4),
     boarding_time timestamptz,
     gate_id varchar(3),
 
@@ -115,18 +117,3 @@ CREATE TABLE app_users (
 );
 
 COMMIT;
-
-/** Add data to tables **/
-/**
-
-MAKE SURE hw4 directory has a folder called `data` that contains `aircraft.csv`, `airports.csv`,
-and `flights.csv`.
-
-
-RUN THESE COMMANDS IN PSQL SHELL
-
-\copy app_airports(airport_code, airport_name, city) FROM '~/hw4/data/airports.csv' DELIMITER ',' CSV HEADER
-\copy app_aircraft(aircraft_code, model, range) FROM '~/hw4/data/aircraft.csv' DELIMITER ',' CSV HEADER
-\copy app_flights(flight_code, scheduled_departure,scheduled_arrival,departure_airport_id, arrival_airport_id,flight_status,aircraft_code,actual_departure,actual_arrival) FROM '~/hw4/data/flights.csv' DELIMITER ',' CSV HEADER
-
-**/

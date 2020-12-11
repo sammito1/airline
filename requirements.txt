@@ -1,0 +1,5 @@
+flask
+psycopg2
+sqlparse
+cs50
+flask-session

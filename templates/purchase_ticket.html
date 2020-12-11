@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Checkout
+{% endblock %}
+
+{% block main %}
+
+
+<div class="container-lg bg-light rounded py-3">
+  <h4> Selected trip: </h4>
+  <table class="table table-hover table-borderless">
+    <thead>
+      <tr>
+        <th scope="col">Flight Code</th>
+        <th scope="col">Scheduled Departure</th>
+        <th scope="col">Scheduled Arrival</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    
+    {% for ticket in order %}
+    <tr>
+      <td>{{ ticket.flight_code }}</td>
+      <td>{{ ticket.departure_formatted }}</td>
+      <td>{{ ticket.arrival_formatted }}</td>
+      <td>{{ ticket.departure_airport_id }}</td>
+      <td>{{ ticket.arrival_airport_id }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="container-lg my-3">
+  <form action="/" method="post">
+    <h4 class="mb-3">Who's traveling?</h4>
+    <div class="form-group col-auto">
+      <input type="text" class="form-control" placeholder="Name" required>
+    </div>
+    <div class="form-group col-auto">
+      <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+    </div>
+    <div class="form-group col-auto">
+      <input type="tel" class="form-control" placeholder="Phone" required>
+    </div>
+    <h4 class="mb-3">Seat Selection</h4>
+    <h4 class="mb-3">Bringing Bags?</h4>
+    <h4 class="mb-3">Payment</h4>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

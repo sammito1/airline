@@ -4,6 +4,7 @@ nav .navbar-brand
 {
     /* size for brand */
     font-size: xx-large;
+    font-weight: bold;
     font-family: 'Roboto', sans-serif;
 }
 

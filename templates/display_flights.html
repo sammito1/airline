@@ -1,0 +1,126 @@
+{% extends "layout.html"%}
+
+{% block title %}
+    Available Flights
+{% endblock %}
+
+{% block main %}
+
+<div class="container-lg shadow rounded py-3">
+  <form action="/" method="get">
+      <div class="form-row justify-content-center">
+        <div class="form-group col-auto">
+          <label for="departure-city-select"><h5>Where from?</h5></label><br>
+          <select class="form-control" name="departure-city" id="departure-city-select">
+            <option value="{{ departure_city }}"> {{ departure_city }} </option>
+            {% for city in cities %}
+              {% if city.city != departure_city %}}
+                <option value="{{city.city}}"> {{ city.city }} </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-auto">
+          <label for="arrival-city-select"><h5>Where to?</h5></label><br>
+          <select class="form-control" name="arrival-city" id="arrival-city-select">
+            <option value="{{ arrival_city }}"> {{ arrival_city }} </option>
+            {% for city in cities %}
+              {% if city.city != arrival_city %}
+                <option value="{{city.city}}"> {{ city.city }} </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-auto">
+          <label for="flight-type-toggle"><h5>Flight Type</h5></label><br>
+          <select class="form-control" name="flight-type" id="flight-type-toggle">
+            <option value="one-way-nonstop" {% if flight_type == 'one-way-nonstop' %} selected {% endif %}>One-way nonstop</option>
+            <option value="one-way-connection"{% if flight_type == 'one-way-connection' %} selected {% endif %}>One-way with connection</option>
+            <option value="round-trip"{% if flight_type == 'round-trip' %} selected {% endif %}>Round trip</option>
+          </select>
+        </div>
+        <div class="form-group col-auto">
+          <label for="departure-date"><h5>Leaving?</h5></label><br>
+          <input class="form-control" type="date" id="departure-date" name="departure-date" value="{{ departure_date }}" required>
+        </div>
+        <div class="form-group col-auto" id="arrival-block">
+          <label for="arrival-date"><h5>Returning?</h5></label><br>
+          <input class="form-control" type="date" id="arrival-date" name="arrival-date" value="{{ arrival_date }}">
+        </div>
+      </div>
+      <div class="col-auto" >
+        <button type="submit" class="btn btn-primary shadow">Search</button>
+      </div>
+  </form>
+</div>
+
+{% if not flights and request.args %}
+<div class="alert alert-primary" role="alert" style="margin-top: 39px">
+  <p>No results found. Please try a different departure/destination and leave/return date combination 😄</p>
+  <p>Hint: Try Moscow → St. Petersburg Flights from Dec. 16th onwards</p>
+</div>
+{% elif flights and request.args %}
+<div class="container mt-5">
+  <h4>
+    Departing flights
+    <span class="badge bg-primary text-light">
+      {% if flight_type == 'one-way-nonstop' or flight_type == 'one-way-connection' %}
+        One way
+      {% elif flight_type == 'round-trip' %}
+        Round trip
+      {% endif %}
+    </span>
+    <span class="badge bg-secondary text-light">
+      {% if flight_type == 'one-way-nonstop' or flight_type == 'round-trip' %}
+        Nonstop
+      {% elif flight_type == 'one-way-connection' %}
+        Single connection
+      {% endif %}
+    </span>
+  </h4>
+
+<div class="container mt-5">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Flight Code</th>
+        <th scope="col">Scheduled Departure</th>
+        <th scope="col">Scheduled Arrival</th>
+        <th scope="col">Departure Airport</th>
+        <th scope="col">Arrival Airport</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    {% for flight in flights %}
+    <tr>
+      <td>{{ flight.flight_code }}</td>
+      <td>{{ flight.departure_formatted }}</td>
+      <td>{{ flight.arrival_formatted }}</td>
+      <td>{{ flight.departure_airport_id }}</td>
+      <td>{{ flight.arrival_airport_id }}</td>
+      <td>
+        <form action="/" method="GET">
+          <input type="hidden" id="hidden-form-arrival-city" name="form-arrival-city" value="{{ arrival_city }}">
+          <input type="hidden" id="hidden-departure-city" name="departure-city" value="{{ flight.departure_city }}">
+          <input type="hidden" id="hidden-arrival-city" name="arrival-city" value="{{ flight.arrival_city }}">
+          <input type="hidden" id="hidden-departure-airport" name="departure-airport" value="{{ flight.departure_airport_id }}">
+          <input type="hidden" id="hidden-arrival-airport" name="arrival-airport" value="{{ flight.arrival_airport_id }}">
+          <input type="hidden" id="hidden-departure-date" name="departure-date" value="{{ departure_date }}">
+          <input type="hidden" id="hidden-arrival-date" name="arrival-date" value="{{ arrival_date }}">
+          <input type="hidden" id="hidden-chosen-arrival-date" name="chosen-arrival-date" value="{{ flight.scheduled_arrival}}">
+          <input type="hidden" id="hidden-flight-type" name="flight-type" value="{{ flight_type }}">
+          <input type="hidden" id="hidden-ticket-string" name="flight-id-string" value="{{ flight_id_string }}">
+          <button type="submit" class="btn btn-light" name="chosen-departure-flight-id" value="{{ flight.flight_id }}">
+            Select
+          </button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endif %}
+
+{% endblock %}

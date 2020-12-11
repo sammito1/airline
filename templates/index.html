@@ -1,36 +1,51 @@
-{% extends "layout.html"%}
+{% extends "layout.html" %}
 
 {% block title %}
     Index
 {% endblock %}
 
 {% block main %}
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Flight Code</th>
-      <th scope="col">Scheduled Departure</th>
-      <th scope="col">Scheduled Arrival</th>
-      <th scope="col">Departure Airport</th>
-      <th scope="col">Arrival Airport</th>
-      <th scope="col">Price</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-
-  {% for row in rows %}
-  <tr>
-    <td>{{ row.flight_code }}</td>
-    <td>{{ row.scheduled_departure }}</td>
-    <td>{{ row.scheduled_arrival }}</td>
-    <td>{{ row.departure_airport_id }}</td>
-    <td>{{ row.arrival_airport_id }}</td>
-    <td>{{ row.price }} </td>
-    <td> <button type="button" class="btn btn-primary">Select Flight</button></td>
-  </tr>
-  {% endfor %}
-
-</table>
-
+  <div class="container">
+    <form action="/display-flights" method="get" style="margin-top: 39px">
+      <div class="container">
+        <div class="form-row justify-content-center">
+          <div class="form-group col-auto">
+            <label for="departure-city-select"><h5>Where from?</h5></label><br>
+            <select class="form-control form-control-lg" name="departure-city" id="departure-city-select">
+              {% for city in cities%}
+              <option value="{{city.city}}"> {{ city.city }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-auto">
+            <label for="arrival-city-select"><h5>Where to?</h5></label><br>
+            <select class="form-control form-control-lg" name="arrival-city" id="arrival-city-select">
+              {% for city in cities%}
+              <option value="{{city.city}}"> {{ city.city }} </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="form-group col-auto">
+            <label for="flight-type-toggle"><h5>Flight Type</h5></label><br>
+            <select class="form-control form-control-lg" name="flight-type" id="flight-type-toggle">
+              <option value="one-way-nonstop">One-way Nonstop</option>
+              <option value="one-way-connection">One-way with Connection</option>
+              <option value="round-trip">Round Trip</option>
+            </select>
+          </div>
+          <div class="form-group col-auto">
+            <label for="departure-date"><h5>Leaving?</h5></label><br>
+            <input class="form-control form-control-lg" type="date" id="departure-date" name="departure-date" required>
+          </div>
+          <div class="form-group col-auto" id="arrival-block">
+            <label for="arrival-date"><h5>Returning? (for round-trip)</h5></label><br>
+            <input class="form-control form-control-lg" type="date" id="arrival-date" name="arrival-date">
+          </div>
+        </div>
+        <div class="col-auto" style="margin-top: 39px">
+          <button type="submit" class="btn btn-primary btn-lg">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>
 {% endblock %}
