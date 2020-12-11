@@ -8,6 +8,7 @@ https://github.com/sammito1/airline
 ## Installation, Setup
 This app runs best on python 3.7 and above, so please have that installed.
 
+Please make a `passsword.txt` file with your unix id in the top line and your password in the bottom line. You should have it in the same directory as `airline.py`.
 Simply run the setup file as shown:
 
 ```$ ./setup.sh```
