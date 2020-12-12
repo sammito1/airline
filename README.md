@@ -1,9 +1,8 @@
 # airline
 Simple (mock) airline website built using (but not limited to) Flask, Jinja, and PostgreSQL.
 
-Go here to get an updated video showing the functionality of the app:
-
-https://github.com/sammito1/airline
+## Demo Video
+[Click here](https://streamable.com/0o14pz) to watch a demo video of the app in action as of December 10th, 2020.
 
 ## Installation, Setup
 This app runs best on python 3.7 and above, so please have that installed.
