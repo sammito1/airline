@@ -23,10 +23,10 @@
       <div class="form-row col-auto justify-content-center">
         {% for i in range(flights | length) %}
         <div class="form-group col-auto">
-          <label for="seat-{{i}}">Flight {{ flights[i]['flight_code'] }}</label><br>
-          <select class="form-control" name="seat-{{ i }}" id="seat-{{ i }}">
+          <label for="seat-fare-{{i}}">Flight {{ flights[i]['flight_code'] }}</label><br>
+          <select class="form-control" name="seat-fare-{{ i }}" id="seat-fare-{{ i }}">
             {% for seat in flights[i].seats_table %}
-              <option value="{{ seat.seat_no }}">
+              <option value="{{ seat.seat_no, seat.fare_conditions }}">
                 {{ seat.seat_no }} ({{ seat.fare_conditions }} -
                 {% if seat.fare_conditions == 'Economy' %}
                 $250)
@@ -56,6 +56,7 @@
         <input type="text" class="form-control" id="card-number" placeholder="Your card number" required>
       </div>
     </div>
+    <input type="hidden" name="flight-id-string" value="{{flight_id_str}}">
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 </div>

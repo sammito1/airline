@@ -5,7 +5,8 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import apology, login_required
+import helpers
+from helpers import *
 
 # read from password file
 password_file = open("password.txt")
@@ -20,6 +21,7 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 #db = SQL("postgres://postgres:postgres@localhost:5432/COSC3380") # local db
 db = SQL(f"postgres://{username}:{password}@code.cs.uh.edu:5432/COSC3380") # uh db
+helpers.db = SQL(f"postgres://{username}:{password}@code.cs.uh.edu:5432/COSC3380") # uh db
 
 #db = SQL(f"postgres://{username}:{password}@ec2-54-146-118-15.compute-1.amazonaws.com:5432/d963gfgsgh737s") # heroku db
 
@@ -56,7 +58,7 @@ def login():
             return apology("Missing password", 403)
 
         # Query database for username
-        rows = db.execute("SELECT * FROM I60U84.app_users WHERE username = :username",
+        rows = db.execute("SELECT * FROM app_users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
@@ -110,17 +112,17 @@ def register():
         hashed_password = generate_password_hash(request.form.get("password"))
 
         # ensure username is unique
-        rows = db.execute("SELECT * FROM I60U84.app_users WHERE username = :username", username=request.form.get("username"))
+        rows = db.execute("SELECT * FROM app_users WHERE username = :username", username=request.form.get("username"))
         if len(rows) >= 1:
                 return apology("Username already taken.")
 
-        result = db.execute("INSERT INTO I60U84.app_users (username, hash) VALUES(:username, :password)",
+        result = db.execute("INSERT INTO app_users (username, hash) VALUES(:username, :password)",
                            username = request.form.get("username"), password = hashed_password)
         if not result:
             return apology("Username already taken.")
 
         # Query database for username
-        rows = db.execute("SELECT * FROM I60U84.app_users WHERE username = :username",
+        rows = db.execute("SELECT * FROM app_users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Remember which user has logged in
@@ -141,7 +143,7 @@ def display_flights():
     cities = db.execute(
         """
         SELECT DISTINCT city
-        FROM I60U84.app_airports
+        FROM app_airports
         ORDER BY city
         """
     )
@@ -221,7 +223,8 @@ def display_flights():
 def checkout():
     if request.method == "GET":
         # convert flight id string into list
-        flight_id_list = request.args.get('flight-id-string').split(',')[:-1]
+        flight_id_str = request.args.get('flight-id-string')
+        flight_id_list = flight_id_str.split(',')[:-1]
         flights = []
 
         if len(flight_id_list) == 1:
@@ -233,19 +236,44 @@ def checkout():
             flight['seats_table'] = 'test'
             flight['seats_table'] = get_seats_available(flight['flight_id'])
 
-        return render_template('checkout.html', flights=flights)
+        return render_template('checkout.html', flights=flights, flight_id_str=flight_id_str)
     else:
         # get personal info
         name = request.form.get('name')
         email = request.form.get('email')
         phone_num = request.form.get('phone')
+        user_id = session["user_id"]
 
-        # get seat info
-        
-        # get num bags, and credit card info
+        # get seat and fare info
+        first_seat, first_fare, second_seat, second_fare, flight_id_str = "", "", "", "", ""
+        flight_id_list, seat_fare_list, seat_list, price_list = [], [], [], []
+        if request.form.get('seat-fare-0'):
+            seat_fare_list = eval(request.form.get('seat-fare-0'))
+            seat_list.append(seat_fare_list[0])
+            first_fare = seat_fare_list[1]
+            if first_fare == "Economy":
+                price_list.append(250)
+            else:
+                price_list.append(800)
+        if request.form.get('seat-fare-1'):
+            seat_fare_list = eval(request.form.get('seat-fare-1'))
+            seat_list.append(seat_fare_list[0])
+            second_fare = seat_fare_list[1]
+            if second_fare == "Economy":
+                price_list.append(250)
+            else:
+                price_list.append(800)
+        if request.form.get('flight-id-string'):
+            flight_id_str = request.form.get('flight-id-string')
+            flight_id_list = flight_id_str.split(',')[:-1]
+
+        # get num bags
         num_bags = request.form.get('num-bags')
-        card_num = request.form.get('card-number')
         
+        # insert info for each ticket into ticket and boarding passes tables
+        for i in range(len(flight_id_list)):
+            add_ticket(user_id, name, email, phone_num, flight_id_list[i], seat_list[i], price_list[i], num_bags)
+
         # determine total cost
         return redirect('/my_flights')
 
@@ -253,256 +281,12 @@ def checkout():
 @app.route('/my_flights')
 @login_required
 def my_flights():
-    return render_template('my_flights.html')
+    my_tickets = get_personal_flights(session["user_id"])
+    
+    # add flight details to tickets dict
+    for ticket in my_tickets:
+        #ticket['flight_code'] = get_flight_code(ticket['flight_id'])
+        ticket['flight_details'] = get_flight_details(ticket['flight_id'])
+        format_flight(ticket['flight_details'])
 
-def get_seats_available(flight_id):
-    return db.execute("""
-        SELECT * FROM (
-        SELECT * FROM I60U84.app_seats WHERE
-            aircraft_code = (
-            SELECT aircraft_code from I60U84.app_flights
-            WHERE I60U84.app_flights.flight_id = :flight_id
-        ) ORDER BY seat_no DESC
-        ) as q1
-        WHERE q1.seat_no NOT IN (
-            SELECT seat_no FROM I60U84.app_boarding_passes
-            WHERE flight_id = :flight_id
-            ORDER BY ticket_id
-        ) 
-        ORDER BY fare_conditions DESC
-    """, flight_id = flight_id)
-
-
-def format_flights(flights):
-    for flight in flights:
-            departure_dt = flight["scheduled_departure"]
-            arrival_dt = flight["scheduled_arrival"]
-            flight["departure_formatted"] = departure_dt.strftime("%B %d, %Y %-I:%M %p")
-            flight["arrival_formatted"] = arrival_dt.strftime("%B %d, %Y %-I:%M %p")
-
-def get_order_from_one_id(flight_id):
-    return db.execute(
-        """
-        SELECT * FROM (
-            SELECT
-                flight_id,
-                flight_code,
-                scheduled_departure,
-                scheduled_arrival,
-                departure_airport_id,
-                departure_city,
-                arrival_airport_id,
-                city as arrival_city
-            FROM (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    city as departure_city,
-                    arrival_airport_id
-                FROM I60U84.app_flights
-                INNER JOIN I60U84.app_airports
-                ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-            ) as q1
-            INNER JOIN I60U84.app_airports
-            ON q1.arrival_airport_id=app_airports.airport_code
-        ) as q2
-        WHERE
-            flight_id =:id
-        """,
-        id = flight_id
-    )
-
-def get_order_from_two_id(flight_id_1, flight_id_2):
-    return db.execute(
-        """
-        SELECT * FROM (
-            SELECT
-                flight_id,
-                flight_code,
-                scheduled_departure,
-                scheduled_arrival,
-                departure_airport_id,
-                departure_city,
-                arrival_airport_id,
-                city as arrival_city
-            FROM (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    city as departure_city,
-                    arrival_airport_id
-                FROM I60U84.app_flights
-                INNER JOIN I60U84.app_airports
-                ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-            ) as q1
-            INNER JOIN I60U84.app_airports
-            ON q1.arrival_airport_id=app_airports.airport_code
-        ) as q2
-        WHERE
-            flight_id =:id1 OR
-            flight_id =:id2
-        """,
-        id1 = flight_id_1,
-        id2 = flight_id_2
-    )
-def get_nonstop_departures(departure_city, arrival_city, departure_date):
-        return db.execute(
-            """
-            SELECT * FROM (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    departure_city,
-                    arrival_airport_id,
-                    city as arrival_city
-                FROM (
-                    SELECT
-                        flight_id,
-                        flight_code,
-                        scheduled_departure,
-                        scheduled_arrival,
-                        departure_airport_id,
-                        city as departure_city,
-                        arrival_airport_id
-                    FROM I60U84.app_flights
-                    INNER JOIN I60U84.app_airports
-                    ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-                ) as q1
-                INNER JOIN I60U84.app_airports
-                ON q1.arrival_airport_id=app_airports.airport_code
-            ) as q2
-            WHERE
-                departure_city=:departing_city AND
-                arrival_city=:arriving_city AND
-                date(scheduled_departure)=:departing_date
-            """
-            , departing_city = departure_city, arriving_city = arrival_city,
-            departing_date = departure_date)
-
-def get_first_leg(departure_city, arrival_city, departure_date):
-    return db.execute(
-        """
-        SELECT * FROM (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    departure_city,
-                    arrival_airport_id,
-                    city as arrival_city
-                FROM (
-                    SELECT
-                        flight_id,
-                        flight_code,
-                        scheduled_departure,
-                        scheduled_arrival,
-                        departure_airport_id,
-                        city as departure_city,
-                        arrival_airport_id
-                    FROM I60U84.app_flights
-                    INNER JOIN I60U84.app_airports
-                    ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-                ) as q1
-                INNER JOIN I60U84.app_airports
-                ON q1.arrival_airport_id=app_airports.airport_code
-            ) as q2
-            WHERE
-                departure_city = :departing_from AND
-                arrival_city != :arriving_to AND
-                date(scheduled_departure) = :departing_when
-        """,
-        departing_from = departure_city,
-        arriving_to = arrival_city,
-        departing_when = departure_date
-    )
-
-def get_second_leg(departure_airport, arrival_city, scheduled_arrival):
-    return db.execute(
-        """
-        SELECT * FROM
-        (
-            SELECT
-                flight_id,
-                flight_code,
-                scheduled_departure,
-                scheduled_arrival,
-                departure_airport_id,
-                departure_city,
-                arrival_airport_id,
-                city as arrival_city
-            FROM
-            (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    city as departure_city,
-                    arrival_airport_id
-                FROM I60U84.app_flights
-                INNER JOIN I60U84.app_airports
-                ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-            ) as q1
-            INNER JOIN I60U84.app_airports
-            ON q1.arrival_airport_id=app_airports.airport_code
-        ) as q2
-        WHERE
-            departure_airport_id = :departure_airport_id AND
-            arrival_city = :arrival_city_name AND
-            scheduled_arrival BETWEEN :scheduled_arrival_datetime
-            AND :scheduled_arrival_datetime::timestamptz + INTERVAL '24 hours';
-        """,
-        departure_airport_id=departure_airport,
-        arrival_city_name=arrival_city,
-        scheduled_arrival_datetime=scheduled_arrival
-    )
-
-def get_roundtrip_arrivals(prev_departure_airport, prev_arrival_airport, prev_arrival_datetime, return_date):
-    return db.execute(
-        """
-        SELECT * FROM (
-            SELECT
-                flight_id,
-                flight_code,
-                scheduled_departure,
-                scheduled_arrival,
-                departure_airport_id,
-                departure_city,
-                arrival_airport_id,
-                city as arrival_city
-            FROM (
-                SELECT
-                    flight_id,
-                    flight_code,
-                    scheduled_departure,
-                    scheduled_arrival,
-                    departure_airport_id,
-                    city as departure_city,
-                    arrival_airport_id
-                FROM I60U84.app_flights
-                INNER JOIN I60U84.app_airports
-                ON I60U84.app_flights.departure_airport_id=I60U84.app_airports.airport_code
-            ) as q1
-            INNER JOIN I60U84.app_airports
-            ON q1.arrival_airport_id=app_airports.airport_code
-        ) as q2
-        WHERE
-            departure_airport_id=:departure_airport AND
-            arrival_airport_id=:arrival_airport AND
-            date(scheduled_arrival)=date(:returning_date) AND
-            scheduled_departure > :arrival_datetime
-        """
-        , departure_airport = prev_arrival_airport, arrival_airport = prev_departure_airport,
-        arrival_datetime = prev_arrival_datetime, returning_date = return_date)
+    return render_template('my_flights.html', tickets=my_tickets)

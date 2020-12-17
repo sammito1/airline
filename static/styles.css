@@ -1,31 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
 nav .navbar-brand
 {
     /* size for brand */
-    font-size: xx-large;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
+    font-size: x-large;
 }
-
 /* colors for brand */
 nav .navbar-brand .blue
 {
-    color: #537fbe;
+    color: #0358b4;
 }
-nav .navbar-brand .red
-{
-    color: #ea433b;
-}
-nav .navbar-brand .yellow
-{
-    color: #f5b82e;
-}
-nav .navbar-brand .green
-{
-    color: #2e944b;
-}
-
 main .form-control
 {
     /* center form controls */
@@ -34,7 +17,6 @@ main .form-control
     /* override Bootstrap's 100% width for form controls */
     width: auto;
 }
-
 main
 {
     /* scroll horizontally as needed */
@@ -42,10 +24,27 @@ main
 
     /* center contents */
     text-align: center;
-}
 
+}
 main img
 {
     /* constrain images on small screens */
     max-width: 100%;
+}
+
+footer
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
+#github-logo
+{
+    margin-left: 64px;
+    margin-bottom: 3px;
+    width: 24px;
+    bottom: 0;
 }

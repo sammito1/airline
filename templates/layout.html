@@ -57,7 +57,7 @@
             <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Finance</span></a>
             -->
             <a class="navbar-brand" href="/">
-              <span class="blue">Quasar Airlines</span>
+                <img class="img-fluid" src="../static/juno-logo.png">
             </a>
             <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
                 <span class="navbar-toggler-icon"></span>
@@ -75,7 +75,7 @@
                 -->
                     <ul class="navbar-nav ml-auto mt-2">
                         <li class="nav-item"><a class="nav-link" href="/">Search Flights</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/my_flights">My Flights</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/my_flights">My Tickets</a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     </ul>
                 {% else %}
@@ -90,5 +90,12 @@
         <main class="container p-5">
             {% block main %}{% endblock %}
         </main>
+
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted"> Made with &#x2615; in Houston, TX </span>
+                <a href="https://www.github.com/sammito1/airline"><img id="github-logo" src="../static/icons8-github-48.png"></a>
+            </div>
+        </footer>
   </body>
 </html>
