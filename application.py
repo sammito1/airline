@@ -7,13 +7,6 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-# read from password file
-password_file = open("password.txt")
-password_file_lines = password_file.read().splitlines()
-login_info = {"username": password_file_lines[0], "password": password_file_lines[1]}
-username = login_info["username"]
-password = login_info["password"]
-
 # from flask_session import Session
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
