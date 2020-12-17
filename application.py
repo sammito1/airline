@@ -7,7 +7,6 @@ from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions
 from werkzeug.security import check_password_hash, generate_password_hash
 
-# from flask_session import Session
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
