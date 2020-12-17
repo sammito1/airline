@@ -287,3 +287,7 @@ def my_flights():
         format_flight(ticket['flight_details'])
 
     return render_template('my_flights.html', tickets=my_tickets)
+
+if __name__ =="__main__":
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)
