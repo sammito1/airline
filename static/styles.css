@@ -4,6 +4,7 @@ nav .navbar-brand
 {
     /* size for brand */
     font-size: xx-large;
+    font-weight: bolder;
     font-family: "Asap", sans-serif;
 }
 /* colors for brand */
