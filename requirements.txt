@@ -1,5 +1,6 @@
 gunicorn
 flask
+requests
 psycopg2
 sqlparse
 cs50
