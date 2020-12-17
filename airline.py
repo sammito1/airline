@@ -19,11 +19,8 @@ password = login_info["password"]
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
-#db = SQL("postgres://postgres:postgres@localhost:5432/COSC3380") # local db
-db = SQL(f"postgres://{username}:{password}@code.cs.uh.edu:5432/COSC3380") # uh db
-helpers.db = SQL(f"postgres://{username}:{password}@code.cs.uh.edu:5432/COSC3380") # uh db
-
-#db = SQL(f"postgres://{username}:{password}@ec2-54-146-118-15.compute-1.amazonaws.com:5432/d963gfgsgh737s") # heroku db
+db = SQL(f"postgres://{username}:{password}@ec2-52-20-66-171.compute-1.amazonaws.com:5432/dci15sj6klaor0") # heroku db
+helpers.db = SQL(f"postgres://{username}:{password}@ec2-52-20-66-171.compute-1.amazonaws.com:5432/dci15sj6klaor0") # heroku db
 
 # Ensure responses aren't cached
 @app.after_request
