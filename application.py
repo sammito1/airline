@@ -21,8 +21,6 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-app.config["SECRET_KEY"] = '33f82044d3d0d13c6e0bb0cb7ac827c42668aa29c34f2bec'
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log user in"""
