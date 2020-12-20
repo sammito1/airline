@@ -9,9 +9,14 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 
+'''
 db = SQL(os.environ.get("DATABASE_URL"))
 helpers.db = SQL(os.environ.get("DATABASE_URL"))
 app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY")
+'''
+db = SQL("postgres://avmalmnfdvzmhn:73d5d50002096f813530ab9668e694a58b9cd8f7d2d945d87f482d954b86b435@ec2-52-20-66-171.compute-1.amazonaws.com:5432/dci15sj6klaor0")
+helpers.db = SQL("postgres://avmalmnfdvzmhn:73d5d50002096f813530ab9668e694a58b9cd8f7d2d945d87f482d954b86b435@ec2-52-20-66-171.compute-1.amazonaws.com:5432/dci15sj6klaor0")
+app.config["SECRET_KEY"] = "33f82044d3d0d13c6e0bb0cb7ac827c42668aa29c34f2bec"
 
 # Ensure responses aren't cached
 @app.after_request
