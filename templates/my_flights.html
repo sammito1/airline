@@ -8,7 +8,7 @@
 <div class="container">
   <h4> My tickets: </h4>
 </div>
-<table class="table table-hover table-borderless">
+<table class="table table-hover table-borderless table-responsive-lg">
   <thead>
     <tr>
       <th scope="col">Name</th>
@@ -38,7 +38,7 @@
       </button>
 
       <!-- Modal -->
-      <div data-backdrop="false" class="modal fade" id="modal-{{ ticket.flight_details.flight_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal-{{ ticket.flight_details.flight_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
