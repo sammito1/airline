@@ -8,79 +8,77 @@
 <div class="container">
   <h4> My tickets: </h4>
 </div>
-<div class="table-responsive-lg container-lg bg-light rounded py-3">
-  <table class="table table-hover table-borderless">
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone</th>
-        <th scope="col">Flight Code</th>
-        <th scope="col">Seat</th>
-        <th scope="col">Bags</th>
-        <th scope="col">Price</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    
-    {% for ticket in tickets %}
+<table class="table table-hover table-borderless">
+  <thead>
     <tr>
-      <td>{{ ticket.passenger_name }}</td>
-      <td>{{ ticket.passenger_email }}</td>
-      <td>{{ ticket.passenger_phone }}</td>
-      <td>{{ ticket.flight_details.flight_code }}</td>
-      <td>{{ ticket.seat_no }}</td>
-      <td>{{ ticket.num_bags }}</td>
-      <td>{{ ticket.price }}</td>
-      <td>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-{{ ticket.flight_details.flight_id }}">
-          Flight info
-        </button>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Flight Code</th>
+      <th scope="col">Seat</th>
+      <th scope="col">Bags</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  
+  {% for ticket in tickets %}
+  <tr>
+    <td>{{ ticket.passenger_name }}</td>
+    <td>{{ ticket.passenger_email }}</td>
+    <td>{{ ticket.passenger_phone }}</td>
+    <td>{{ ticket.flight_details.flight_code }}</td>
+    <td>{{ ticket.seat_no }}</td>
+    <td>{{ ticket.num_bags }}</td>
+    <td>{{ ticket.price }}</td>
+    <td>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-{{ ticket.flight_details.flight_id }}">
+        Flight info
+      </button>
 
-        <!-- Modal -->
-        <div data-backdrop="false" class="modal fade" id="modal-{{ ticket.flight_details.flight_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Flight information</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body table-responsive-lg">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th scope="col">Flight Code</th>
-                      <th scope="col">Departing</th>
-                      <th scope="col">Arriving</th>
-                      <th scope="col">Departure Airport</th>
-                      <th scope="col">Departure City</th>
-                      <th scope="col">Arrival Airport</th>
-                      <th scope="col">Arrival City</th>
-                    </tr>
-                  </thead>
+      <!-- Modal -->
+      <div data-backdrop="false" class="modal fade" id="modal-{{ ticket.flight_details.flight_id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Flight information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body table-responsive-lg">
+              <table class="table table-hover">
+                <thead>
                   <tr>
-                    <td> {{ ticket.flight_details.flight_code }}</td>
-                    <td> {{ ticket.flight_details.departure_formatted }}</td>
-                    <td> {{ ticket.flight_details.arrival_formatted }}</td>
-                    <td> {{ ticket.flight_details.departure_airport_id }}</td>
-                    <td> {{ ticket.flight_details.departure_city }}</td>
-                    <td> {{ ticket.flight_details.arrival_airport_id }}</td>
-                    <td> {{ ticket.flight_details.arrival_city }}</td>
+                    <th scope="col">Flight Code</th>
+                    <th scope="col">Departing</th>
+                    <th scope="col">Arriving</th>
+                    <th scope="col">Departure Airport</th>
+                    <th scope="col">Departure City</th>
+                    <th scope="col">Arrival Airport</th>
+                    <th scope="col">Arrival City</th>
                   </tr>
-                </table>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              </div>
+                </thead>
+                <tr>
+                  <td> {{ ticket.flight_details.flight_code }}</td>
+                  <td> {{ ticket.flight_details.departure_formatted }}</td>
+                  <td> {{ ticket.flight_details.arrival_formatted }}</td>
+                  <td> {{ ticket.flight_details.departure_airport_id }}</td>
+                  <td> {{ ticket.flight_details.departure_city }}</td>
+                  <td> {{ ticket.flight_details.arrival_airport_id }}</td>
+                  <td> {{ ticket.flight_details.arrival_city }}</td>
+                </tr>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
-</div>
+      </div>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
 {% endblock %}
