@@ -56,7 +56,7 @@ footer
     bottom: 0;
 }
 
-.modal-backdrop
+body.modal-open div.modal-backdrop
 {
-    z-index: auto;
+    z-index: 0;
 }
