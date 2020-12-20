@@ -58,5 +58,5 @@ footer
 
 .modal-backdrop
 {
-    z-index: -1;
+    z-index: auto;
 }
