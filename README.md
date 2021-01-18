@@ -7,22 +7,26 @@ Simple (mock) airline website built using (but not limited to) Flask, Jinja, and
 
 ## Basic Functionality
 
-Searching for one-way flight from Moscow -> St. Petersburg on 12/16/20
+Searching for one-way flight from Moscow -> St. Petersburg on 12/16/20:
 
 ![demo-1](images/demo-1.png)
 
-Results of the search
+Results of the search:
 
 ![demo-2](images/demo-2.png)
 
-Selecting flight PG0405
+Selecting flight PG0405:
 
 ![demo-3](images/demo-3.png)
 
-Input ticket information
+Input ticket information:
 
 ![demo-4](images/demo-4.png)
 
-Show currently purchased tickets
+Show currently purchased tickets:
 
 ![demo-5](images/demo-5.png)
+
+Show flight information of a selected ticket from previous purchases:
+
+![demo-6](images/demo-6.png)
